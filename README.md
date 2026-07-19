@@ -172,6 +172,22 @@ By default, just the metadata of the media is stored in the local database. The 
 - If you encounter permission issues when running uv, you may need to add it to your PATH or use the full path to the executable.
 - Make sure both the Go application and the Python server are running for the integration to work properly.
 
+### Prosper local runtime
+
+Prosper uses the hardened Go bridge only through the local command layer. Run
+`whatsapp-bridge/scripts/install-local-runtime.sh` to build a private local
+runtime under `/Users/craigstratton/.local/share/prosper-whatsapp-bridge`; this
+avoids relying on an SMB-mounted project path from `launchd`. The template at
+`whatsapp-bridge/launchd/io.prosper.whatsapp-bridge.plist.template` then keeps
+the bridge on `127.0.0.1:8080`, restarts it after a QR timeout or reboot, and
+fixes both outbound capabilities to `false`. It deliberately discards bridge
+stdout/stderr because QR output is device-authorization material; the QR text
+file remains owner-only and is rendered locally when Craig is ready to scan.
+
+The launch agent provides pairing and readback continuity only. It does not
+enable a message, media, policy, webhook, or auto-reply path. Those remain
+separately gated by `prosper-message-command`.
+
 ### Authentication Issues
 
 - **QR Code Not Displaying**: If the QR code doesn't appear, try restarting the authentication script. If issues persist, check if your terminal supports displaying QR codes.

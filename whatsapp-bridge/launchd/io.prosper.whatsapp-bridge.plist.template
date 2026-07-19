@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>io.prosper.whatsapp-bridge</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/zsh</string>
+    <string>/Users/craigstratton/.local/share/prosper-whatsapp-bridge/run-bridge.sh</string>
+  </array>
+  <key>WorkingDirectory</key>
+  <string>/Users/craigstratton/.local/share/prosper-whatsapp-bridge</string>
+  <key>RunAtLoad</key>
+  <true/>
+  <key>KeepAlive</key>
+  <true/>
+  <key>ThrottleInterval</key>
+  <integer>30</integer>
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>HOME</key>
+    <string>/Users/craigstratton</string>
+    <key>WHATSAPP_BRIDGE_BIND_ADDRESS</key>
+    <string>127.0.0.1</string>
+    <key>WHATSAPP_BRIDGE_PORT</key>
+    <string>8080</string>
+    <key>WHATSAPP_BRIDGE_SEND_ENABLED</key>
+    <string>false</string>
+    <key>WHATSAPP_BRIDGE_MEDIA_DOWNLOADS_ENABLED</key>
+    <string>false</string>
+    <key>WHATSAPP_PAIRING_QR_PATH</key>
+    <string>/tmp/prosper-whatsapp-pairing-qr.txt</string>
+  </dict>
+  <!-- QR output can authorize a device, so never persist bridge stdout/stderr. -->
+  <key>StandardOutPath</key>
+  <string>/dev/null</string>
+  <key>StandardErrorPath</key>
+  <string>/dev/null</string>
+</dict>
+</plist>
