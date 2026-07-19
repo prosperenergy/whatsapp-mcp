@@ -183,6 +183,8 @@ the bridge on `127.0.0.1:8080`, restarts it after a QR timeout or reboot, and
 fixes both outbound capabilities to `false`. It deliberately discards bridge
 stdout/stderr because QR output is device-authorization material; the QR text
 file remains owner-only and is rendered locally when Craig is ready to scan.
+`show-pairing-qr.swift` opens a local macOS pairing window and refreshes the QR
+as WhatsApp rotates it, avoiding stale static Preview images.
 
 The launch agent provides pairing and readback continuity only. It does not
 enable a message, media, policy, webhook, or auto-reply path. Those remain
